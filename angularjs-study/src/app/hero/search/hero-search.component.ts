@@ -12,13 +12,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import { HeroSearchService } from './../common/service/hero-search.service';
+import { Hero } from './../common/entity/hero';
 
 @Component({
     selector: 'app-hero-search',
     templateUrl: './hero-search.component.html',
-    styleUrls: ['./hero-search.component.css'],
+    styleUrls: ['./hero-search.component.scss'],
     providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
