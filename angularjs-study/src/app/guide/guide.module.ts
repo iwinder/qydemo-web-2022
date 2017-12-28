@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { GuideFormsRoutingModule, routedComponents } from './guide-forms-routing.module';
+import { GuideRoutingModule } from './guide-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';  // <-- NgModel lives here
 
@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';  // <-- NgModel lives here
     imports: [
         CommonModule,
         FormsModule,  // <-- import the FormsModule before binding with [(ngModel)]
-        GuideFormsRoutingModule
+        GuideRoutingModule
     ],
-    declarations: [...routedComponents]
+    declarations: []
 })
-export class GuideFormsModule { }
+export class GuideModule { }
