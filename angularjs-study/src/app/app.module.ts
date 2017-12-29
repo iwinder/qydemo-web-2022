@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './hero/common/service/in-memory-data.service';
 @NgModule({
   declarations: [
@@ -13,9 +13,9 @@ import { InMemoryDataService } from './hero/common/service/in-memory-data.servic
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

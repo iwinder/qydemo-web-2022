@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserInputComponent } from './user-input/user-input.component';
+import { LittleTourComponent } from './user-input/little-tour/little-tour.component';
+import { HeroFormComponent } from './hero/form/hero-form.component';
 const routes: Routes = [
     {
-        path: 'user-input',
-        component: UserInputComponent
+        path: 'user-input', children: [
+            {path: '', component: UserInputComponent},
+            { path: 'little-tour', component: LittleTourComponent }
+        ]
+    },
+    {
+        path: 'hero', children: [
+            { path: 'form', component: HeroFormComponent }
+        ]
     }
 
 ]
@@ -16,5 +25,7 @@ const routes: Routes = [
 export class GuideFormsRoutingModule {
 }
 export const routedComponents = [
-    UserInputComponent
+    UserInputComponent,
+    LittleTourComponent,
+    HeroFormComponent
 ]
