@@ -1,0 +1,77 @@
+{{diagnostic}}
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Hero Form</h1>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <div class="form-group">
+                <label for="name">名砸：</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]='model.name' name="name" #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    不留名砸，你是黑户嘛！
+                </div>
+                <i>
+                    <ul>
+                        <li>
+                            模板引用变量可以访问模板中输入框的 Angular 控件。 这里，创建了名叫name的变量，并且赋值为 "ngModel"。
+                        </li>
+                        <li>
+                            为什么是 “ngModel”？ 指令的 exportAs 属性告诉 Angular 如何链接模板引用变量到指令。 这里把name设置为ngModel是因为ngModel指令的exportAs属性设置成了 “ngModel”。
+                        </li>
+                    </ul>
+                </i>
+                <!-- <i>TODO: remove this:{{model.name}}<br>TODO: remove this: {{spy.className}}</i> -->
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Alter Ego</label>
+                <input type="text" class="form-control" id="alterEgo" [(ngModel)]='model.alterEgo' name="alterEgo">
+            </div>
+            <div class="form-group">
+                <label for="power">Hero Power</label>
+                <select class="form-control" id="power" required [(ngModel)]='model.power' name="power">
+                    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">准啦</button>
+            <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">新妃子</button>
+            <i>
+                <ol>
+                    <li>表单记得我们在点击 New Hero 前输入的名字。 </li>
+                    <li>更换了英雄并不会重置控件的“全新”状态。</li>
+                    <li>我们必须清除所有标记，在调用newHero()方法后调用表单的reset()方法即可。</li>
+                </ol>
+            </i>
+        </form>
+    </div>
+    
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9  pull-left">{{ model.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Alter Ego</div>
+            <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Power</div>
+            <div class="col-xs-9 pull-left">{{ model.power }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+    <i>
+         本章讨论的 Angular 表单技术利用了下列框架特性来支持数据修改、验证和更多操作：
+        <ol>
+            <li>Angular HTML 表单模板。 </li>
+            <li>  带有@Component装饰器的表单组件类。 </li>
+            <li>   通过绑定到NgForm.ngSubmit事件属性来处理表单提交。</li>
+            <li>    模板引用变量，例如#heroForm和#name。</li>
+            <li>     [(ngModel)]语法用来实现双向数据绑定。</li>
+            <li>name属性的用途是有效性验证和对表单元素的变更进行追踪。</li>
+            <li> 指向 input 控件的引用变量上的valid属性，可用于检查控件是否有效、是否显示/隐藏错误信息。 </li>
+            <li> 通过绑定到NgForm的有效性状态，控制Submit按钮的禁用状态。 定制 CSS</li>
+            <li> 类来给用户提供无效控件的视觉反馈。</li>
+        </ol>
+    </i>
+</div>

@@ -1,0 +1,8 @@
+<input #newHero
+    (keyup.enter)="addHero(newHero.value); newHero.value=''"
+    (blur)="addHero(newHero.value); newHero.value=''"
+>
+<button (click)='addHero(newHero.value)'>纳入后宫</button>
+<ul>
+    <li *ngFor='let hero of heroes'>{{hero}}</li>
+</ul>

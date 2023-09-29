@@ -1,0 +1,61 @@
+<div>
+     <h2>使用 Angular 事件绑定机制来响应任何 DOM 事件。</h2>
+     <i>要绑定 DOM 事件，只要把 DOM 事件的名字包裹在圆括号中，然后用放在引号中的模板语句对它赋值就可以了。</i>
+     
+    <p><button (click)="onClickMe()">点我！点我!点我！</button></p>
+    <span>{{clickMessage}}</span>
+</div>
+
+<div>
+    <div>
+        <h2>DOM 事件可以携带可能对组件有用的信息。</h2>
+        <i>此处监听keyup事件，并将整个事件载荷 ($event) 传递给组件的事件处理器</i>
+        <p><input (keyup)="onKey($event)" ></p>
+        <p>{{values}}</p>
+        <i>将$event转换为any类型。 这样简化了代码，但是有成本。 没有任何类型信息能够揭示事件对象的属性，防止简单的错误。</i>
+    </div>
+    <div>
+        <h2>使用带类型方法</h2>
+        <i>$event的类型现在是KeyboardEvent。 不是所有的元素都有value属性，所以它将target转换为输入元素。 OnKey方法更加清晰的表达了它期望从模板得到什么，以及它是如何解析事件的。</i>
+        <p>
+            <input (keyup)="onKey2($event)">
+        </p>
+        <p>{{values2}}</p>
+        <h2>传入 $event 是靠不住的做法</h2>
+        <i>类型化事件对象揭露了重要的一点，即反对把整个 DOM 事件传到方法中，因为这样组件会知道太多模板的信息。 只有当它知道更多它本不应了解的 HTML 实现细节时，它才能提取信息。 这就违反了模板（用户看到的）和组件（应用如何处理用户数据）之间的分离关注原则。</i>
+    </div>
+
+    <div>
+        <h2>模板引用变量中获得用户输入</h2>
+        <i>
+            <ul>
+              <li>使用 Angular 的模板引用变量。 这些变量提供了从模块中直接访问元素的能力。</li>  
+              <li>在标识符前加上井号 (#) 就能声明一个模板引用变量。</li>
+            </ul>
+        </i>
+        <p><input #box (keyup)='onKey3(box.value)'></p>
+        <p>{{values3}}</p>
+    </div>
+
+    <div>
+         <h2>按键事件过滤（通过key.enter）</h2>
+         <i>
+             (keyup)事件处理器监听每一次按键。 有时只在意回车键，因为它标志着用户结束输入。
+             <ul>
+                 <li>解决这个问题的一种方法是检查每个$event.keyCode，只有键值是回车键时才采取行动。</li>
+                 <li>更简单的方法是：绑定到 Angular 的keyup.enter 模拟事件。 然后，只有当用户敲回车键时，Angular 才会调用事件处理器。</li>
+             </ul>
+         </i>
+         <p><input #box2 (keyup.enter)='onEnter(box2.value)'></p>
+         <p>{{values4}}</p>
+    </div>
+
+    <div>
+        <h2>失去焦点事件 (blur)</h2>
+        <p><input #box3 
+            (keyup.enter)='update(box3.value)'
+            (blur)='update(box3.value)'>
+        </p>
+        <p>{{values5}}</p>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- <div>
+   hello: {{uname}}
+     hello: {{book.id}} _ {{book.name}} _ {{book.uname}}
+</div> -->
+
+
+<div id="search-component">
+  <h4>Hero Search</h4>
+
+  <div>
+    <div *ngFor="let hero of books | async" class="search-result">
+      {{hero.name}}
+    </div>
+  </div>
+</div>
